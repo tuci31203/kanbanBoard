@@ -1,9 +1,20 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Column from "./Column";
 import BurnBarrel from "./BurnBarrel";
 
-const Board = (props) => {
-    const [cards, setCards] = useState(props.defaultCards);
+const Board = () => {
+    const [cards, setCards] = useState([]);
+    const [checkCards, setCheckCards] = useState(false);
+
+    useEffect(() => {
+        checkCards && localStorage.setItem("cards", JSON.stringify(cards))
+    }, [cards]);
+
+    useEffect(() => {
+        const mem = localStorage.getItem("cards")
+        setCards(mem ? JSON.parse(mem) : [])
+        setCheckCards(true)
+    }, [])
 
     return (
         <div className="flex h-full w-full gap-3 overflow-scroll p-12">

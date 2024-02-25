@@ -5,7 +5,7 @@ import Board from './components/Board';
 const App = () => {
   return (
     <div className="h-screen w-full bg-neutral-900 text-neutral-50">
-      <Board defaultCards={DEFAULT_CARDS} />
+      <Board />
     </div>
   );
 };
